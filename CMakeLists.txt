@@ -39,3 +39,7 @@ set(PUBLIC_HEADERS_STATUS_MACROS
 add_library(absl_status_macros STATIC ${SOURCES_ABSL_STATUS_MACROS})
 target_link_libraries(absl_status_macros PUBLIC absl::memory absl::status absl::strings)
 set_target_properties(absl_status_macros PROPERTIES PUBLIC_HEADER ${PUBLIC_HEADERS_STATUS_MACROS})
+install(TARGETS absl_status_macros
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/absl_status_macros
+)
