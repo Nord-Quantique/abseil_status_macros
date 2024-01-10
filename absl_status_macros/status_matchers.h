@@ -16,7 +16,7 @@
 #define MEDIAPIPE_DEPS_STATUS_MATCHERS_H_
 
 #include "absl/status/status.h"
-#include "mediapipe/framework/port/statusor.h"
+#include "absl/status/statusor.h"
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 
