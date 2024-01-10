@@ -26,7 +26,7 @@
 #include "source_location.h"
 #include "status.h"
 
-namespace mediapipe {
+namespace absl_status_macros {
 
 class ABSL_MUST_USE_RESULT StatusBuilder {
 public:
@@ -40,22 +40,22 @@ public:
   // enabled, it will use `location` as the location from which the log message
   // occurs.  A typical user will call this with `MEDIAPIPE_LOC`.
   StatusBuilder(const absl::Status &original_status,
-                mediapipe::source_location location)
+                absl_status_macros::source_location location)
       : impl_(original_status.ok()
                   ? nullptr
                   : std::make_unique<Impl>(original_status, location)) {}
 
   StatusBuilder(absl::Status &&original_status,
-                mediapipe::source_location location)
+                absl_status_macros::source_location location)
       : impl_(original_status.ok()
                   ? nullptr
                   : std::make_unique<Impl>(std::move(original_status),
                                            location)) {}
 
-  // Creates a `StatusBuilder` from a mediapipe status code.  If logging is
+  // Creates a `StatusBuilder` from a absl_status_macros status code.  If logging is
   // enabled, it will use `location` as the location from which the log message
   // occurs.  A typical user will call this with `MEDIAPIPE_LOC`.
-  StatusBuilder(absl::StatusCode code, mediapipe::source_location location)
+  StatusBuilder(absl::StatusCode code, absl_status_macros::source_location location)
       : impl_(code == absl::StatusCode::kOk
                   ? nullptr
                   : std::make_unique<Impl>(absl::Status(code, ""), location)) {}
@@ -97,8 +97,8 @@ private:
       kPrepend,
     };
 
-    Impl(const absl::Status &status, mediapipe::source_location location);
-    Impl(absl::Status &&status, mediapipe::source_location location);
+    Impl(const absl::Status &status, absl_status_macros::source_location location);
+    Impl(absl::Status &&status, absl_status_macros::source_location location);
     Impl(const Impl &);
     Impl &operator=(const Impl &);
 
@@ -107,7 +107,7 @@ private:
     // The status that the result will be based on.
     absl::Status status;
     // The source location to record if this file is logged.
-    mediapipe::source_location location;
+    absl_status_macros::source_location location;
     // Logging disabled if true.
     bool no_logging = false;
     // The additional messages added with `<<`.  This is nullptr when status_ is
@@ -123,42 +123,42 @@ private:
 };
 
 inline StatusBuilder
-AlreadyExistsErrorBuilder(mediapipe::source_location location) {
+AlreadyExistsErrorBuilder(absl_status_macros::source_location location) {
   return StatusBuilder(absl::StatusCode::kAlreadyExists, location);
 }
 
 inline StatusBuilder
-FailedPreconditionErrorBuilder(mediapipe::source_location location) {
+FailedPreconditionErrorBuilder(absl_status_macros::source_location location) {
   return StatusBuilder(absl::StatusCode::kFailedPrecondition, location);
 }
 
-inline StatusBuilder InternalErrorBuilder(mediapipe::source_location location) {
+inline StatusBuilder InternalErrorBuilder(absl_status_macros::source_location location) {
   return StatusBuilder(absl::StatusCode::kInternal, location);
 }
 
 inline StatusBuilder
-InvalidArgumentErrorBuilder(mediapipe::source_location location) {
+InvalidArgumentErrorBuilder(absl_status_macros::source_location location) {
   return StatusBuilder(absl::StatusCode::kInvalidArgument, location);
 }
 
-inline StatusBuilder NotFoundErrorBuilder(mediapipe::source_location location) {
+inline StatusBuilder NotFoundErrorBuilder(absl_status_macros::source_location location) {
   return StatusBuilder(absl::StatusCode::kNotFound, location);
 }
 
 inline StatusBuilder
-UnavailableErrorBuilder(mediapipe::source_location location) {
+UnavailableErrorBuilder(absl_status_macros::source_location location) {
   return StatusBuilder(absl::StatusCode::kUnavailable, location);
 }
 
 inline StatusBuilder
-UnimplementedErrorBuilder(mediapipe::source_location location) {
+UnimplementedErrorBuilder(absl_status_macros::source_location location) {
   return StatusBuilder(absl::StatusCode::kUnimplemented, location);
 }
 
-inline StatusBuilder UnknownErrorBuilder(mediapipe::source_location location) {
+inline StatusBuilder UnknownErrorBuilder(absl_status_macros::source_location location) {
   return StatusBuilder(absl::StatusCode::kUnknown, location);
 }
 
-} // namespace mediapipe
+} // namespace absl_status_macros
 
 #endif // MEDIAPIPE_DEPS_STATUS_BUILDER_H_

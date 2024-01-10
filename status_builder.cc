@@ -21,7 +21,7 @@
 #include "absl/status/status.h"
 #include "absl/strings/str_cat.h"
 
-namespace mediapipe {
+namespace absl_status_macros {
 
 StatusBuilder::StatusBuilder(const StatusBuilder &sb)
     : impl_(sb.impl_ ? std::make_unique<Impl>(*sb.impl_) : nullptr) {}
@@ -103,11 +103,11 @@ absl::Status StatusBuilder::Impl::JoinMessageToStatus() {
 }
 
 StatusBuilder::Impl::Impl(const absl::Status &status,
-                          mediapipe::source_location location)
+                          absl_status_macros::source_location location)
     : status(status), location(location), stream() {}
 
 StatusBuilder::Impl::Impl(absl::Status &&status,
-                          mediapipe::source_location location)
+                          absl_status_macros::source_location location)
     : status(std::move(status)), location(location), stream() {}
 
 StatusBuilder::Impl::Impl(const Impl &other)
@@ -125,4 +125,4 @@ StatusBuilder::Impl &StatusBuilder::Impl::operator=(const Impl &other) {
   return *this;
 }
 
-} // namespace mediapipe
+} // namespace absl_status_macros

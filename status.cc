@@ -16,7 +16,7 @@
 
 #include <stdio.h>
 
-namespace mediapipe {
+namespace absl_status_macros {
 
 std::ostream &operator<<(std::ostream &os, const absl::Status &x) {
   os << x.ToString();
@@ -33,4 +33,4 @@ std::string *MediaPipeCheckOpHelperOutOfLine(const absl::Status &v,
   return new std::string(r);
 }
 
-} // namespace mediapipe
+} // namespace absl_status_macros
