@@ -29,11 +29,11 @@ set(SOURCES_ABSL_STATUS_MACROS
 )
 
 set(PUBLIC_HEADERS_STATUS_MACROS
-        "canonical_errors.h"
-        "source_location.h"
-        "status.h"
-        "status_builder.h"
-        "status_macros.h"
+        "absl_status_macros/canonical_errors.h"
+        "absl_status_macros/source_location.h"
+        "absl_status_macros/status.h"
+        "absl_status_macros/status_builder.h"
+        "absl_status_macros/status_macros.h"
 )
 
 add_library(absl_status_macros STATIC ${SOURCES_ABSL_STATUS_MACROS})
