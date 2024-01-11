@@ -81,12 +81,18 @@
 //     RETURN_IF_ERROR(foo.Method(args...));
 //     return absl::OkStatus();
 //   }
-#define RETURN_IF_ERROR(expr)                                                  \
-  STATUS_MACROS_IMPL_ELSE_BLOCKER_                                             \
-  if (absl_status_macros::status_macro_internal::StatusAdaptorForMacros                 \
-          status_macro_internal_adaptor = {(expr), MEDIAPIPE_LOC}) {           \
-  } else /* NOLINT */                                                          \
-    return status_macro_internal_adaptor.Consume()
+//*#define RETURN_IF_ERROR(expr)                                                  \
+//  STATUS_MACROS_IMPL_ELSE_BLOCKER_                                             \
+//  if (absl_status_macros::status_macro_internal::StatusAdaptorForMacros                 \
+//          status_macro_internal_adaptor = {(expr), MEDIAPIPE_LOC}) {           \
+//  } else /* NOLINT */                                                          \
+//    return status_macro_internal_adaptor.Consume()*/
+
+#define RETURN_IF_ERROR(expr)          \
+  do {                                 \
+    absl::Status _status = (expr);     \
+    if (!_status.ok()) return _status; \
+  } while (0)
 
 // Executes an expression `rexpr` that returns a `absl::StatusOr<T>`. On
 // OK, extracts its value into the variable defined by `lhs`, otherwise returns
