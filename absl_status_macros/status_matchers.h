@@ -253,8 +253,8 @@ StatusIsMatcher StatusIs(CodeMatcher code_matcher) {
 
 // Macros for testing the results of functions that return absl::Status or
 // absl::StatusOr<T> (for any type T).
-#define MP_EXPECT_OK(expression) EXPECT_THAT(expression, absl_status_macros::IsOk())
-#define MP_ASSERT_OK(expression) ASSERT_THAT(expression, absl_status_macros::IsOk())
+#define EXPECT_OK(expression) EXPECT_THAT(expression, absl_status_macros::IsOk())
+#define ASSERT_OK(expression) ASSERT_THAT(expression, absl_status_macros::IsOk())
 
 #define STATUS_MACROS_IMPL_CONCAT_INNER_(x, y) x##y
 #define STATUS_MACROS_IMPL_CONCAT_(x, y) STATUS_MACROS_IMPL_CONCAT_INNER_(x, y)
