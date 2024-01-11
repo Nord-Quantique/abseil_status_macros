@@ -259,8 +259,8 @@ StatusIsMatcher StatusIs(CodeMatcher code_matcher) {
 #define STATUS_MACROS_IMPL_CONCAT_INNER_(x, y) x##y
 #define STATUS_MACROS_IMPL_CONCAT_(x, y) STATUS_MACROS_IMPL_CONCAT_INNER_(x, y)
 
-#undef MP_ASSERT_OK_AND_ASSIGN
-#define MP_ASSERT_OK_AND_ASSIGN(lhs, rexpr)                                    \
+#undef ASSERT_OK_AND_ASSIGN
+#define ASSERT_OK_AND_ASSIGN(lhs, rexpr)                                    \
   MP_ASSERT_OK_AND_ASSIGN_IMPL_(                                               \
       STATUS_MACROS_IMPL_CONCAT_(_status_or_value, __LINE__), lhs, rexpr)
 
