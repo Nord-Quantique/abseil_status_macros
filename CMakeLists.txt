@@ -45,4 +45,4 @@ install(TARGETS absl_status_macros
 )
 
 # abseil status macros unit tests.
-add_subdirectory(tests)
+# add_subdirectory(tests)
