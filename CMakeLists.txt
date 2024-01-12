@@ -10,17 +10,21 @@ include(FetchContent)  # To allow pulling packages directly from GIT-repositorie
 # Load external dependencies to make it available for quberry internals.
 
 # Abseil (advanced C++ language primitives, statuses, etc.)
-FetchContent_Declare(
-        absl
-        SYSTEM
-        GIT_REPOSITORY https://github.com/abseil/abseil-cpp.git
-        GIT_TAG 20230802.1
-)
-set(ABSL_BUILD_TESTING OFF)
-set(ABSL_PROPAGATE_CXX_STD ON)
-set(CMAKE_INCLUDE_CURRENT_DIR OFF)  # toggle on/off to handle absl-related warnings.
-FetchContent_MakeAvailable(absl)
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
+find_package(absl 20230802)
+if (NOT TARGET absl::absl)
+    message(STATUS "Fetching Abseil from GitHub.")
+    FetchContent_Declare(
+            absl
+            SYSTEM
+            GIT_REPOSITORY https://github.com/abseil/abseil-cpp.git
+            GIT_TAG 20230802.1
+    )
+    set(ABSL_BUILD_TESTING OFF)
+    set(ABSL_PROPAGATE_CXX_STD ON)
+    set(CMAKE_INCLUDE_CURRENT_DIR OFF)  # toggle on/off to handle absl-related warnings.
+    FetchContent_MakeAvailable(absl)
+    set(CMAKE_INCLUDE_CURRENT_DIR ON)
+endif()
 
 # Create library
 set(SOURCES_ABSL_STATUS_MACROS
