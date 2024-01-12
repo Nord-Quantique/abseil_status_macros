@@ -11,7 +11,7 @@ include(FetchContent)  # To allow pulling packages directly from GIT-repositorie
 
 # Abseil (advanced C++ language primitives, statuses, etc.)
 find_package(absl 20230802)
-if (NOT TARGET absl::absl)
+if (NOT TARGET absl::status)
     message(STATUS "Fetching Abseil from GitHub.")
     FetchContent_Declare(
             absl
