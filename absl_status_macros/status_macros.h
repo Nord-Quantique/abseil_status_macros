@@ -81,12 +81,12 @@
 //     RETURN_IF_ERROR(foo.Method(args...));
 //     return absl::OkStatus();
 //   }
-// #define RETURN_IF_ERROR(expr)                                                  \
-//  STATUS_MACROS_IMPL_ELSE_BLOCKER_                                             \
-//  if (absl_status_macros::status_macro_internal::StatusAdaptorForMacros                 \
-//          status_macro_internal_adaptor = {(expr), MEDIAPIPE_LOC}) {           \
-//  } else /* NOLINT */                                                          \
-//    return status_macro_internal_adaptor.Consume()
+/* #define RETURN_IF_ERROR(expr)                                                  \
+  STATUS_MACROS_IMPL_ELSE_BLOCKER_                                             \
+  if (absl_status_macros::status_macro_internal::StatusAdaptorForMacros                 \
+          status_macro_internal_adaptor = {(expr), MEDIAPIPE_LOC}) {           \
+  } else                                                           \
+    return status_macro_internal_adaptor.Consume() */
 
 #define RETURN_IF_ERROR(expr)          \
   do {                                 \
