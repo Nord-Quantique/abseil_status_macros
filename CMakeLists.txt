@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 project(abseil_status_macros VERSION 0.1 LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
@@ -41,6 +41,7 @@ set(PUBLIC_HEADERS_STATUS_MACROS
 
 add_library(absl_status_macros STATIC ${SOURCES_ABSL_STATUS_MACROS})
 target_link_libraries(absl_status_macros PUBLIC absl::memory absl::status absl::statusor absl::strings)
+target_compile_definitions(absl_status_macros PRIVATE -DNDEBUG)
 set_target_properties(absl_status_macros PROPERTIES PUBLIC_HEADER ${PUBLIC_HEADERS_STATUS_MACROS})
 install(TARGETS absl_status_macros
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
