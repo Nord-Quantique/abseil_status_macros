@@ -15,8 +15,8 @@
 #ifndef MEDIAPIPE_DEPS_STATUS_MATCHERS_H_
 #define MEDIAPIPE_DEPS_STATUS_MATCHERS_H_
 
-#include "absl/status/status.h"
-#include "absl/status/statusor.h"
+#include "absl/status/status.h"     // IWYU pragma: export
+#include "absl/status/statusor.h"   // IWYU pragma: export
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 
