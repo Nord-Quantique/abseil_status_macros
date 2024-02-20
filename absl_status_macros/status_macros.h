@@ -25,6 +25,7 @@
 
 #include "status.h"
 #include "status_builder.h"
+#include <type_traits> // IWYU pragma: export
 
 // Evaluates an expression that produces a `absl::Status`. If the status
 // is not ok, returns it from the current function.
