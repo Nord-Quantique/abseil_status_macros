@@ -18,11 +18,14 @@ if (NOT TARGET absl::status)
             GIT_REPOSITORY https://github.com/abseil/abseil-cpp.git
             GIT_TAG 20230802.1
     )
+    set(ABSL_INTERNAL_AT_LEAST_CXX17 ON)
     set(ABSL_BUILD_TESTING OFF)
+    set(ABSL_USE_SYSTEM_INCLUDES ON)
     set(ABSL_PROPAGATE_CXX_STD ON)
     set(CMAKE_INCLUDE_CURRENT_DIR OFF)  # toggle on/off to handle absl-related warnings.
     FetchContent_MakeAvailable(absl)
     set(CMAKE_INCLUDE_CURRENT_DIR ON)
+    set(absl_VERSION 20230802)  # ensure to keep this in check with the used `GIT_TAG`.
 endif()
 
 # Create library
@@ -47,7 +50,6 @@ target_sources(absl_status_macros PUBLIC FILE_SET HEADERS
 )
 target_link_libraries(absl_status_macros PUBLIC absl::memory absl::status absl::statusor absl::strings)
 target_compile_definitions(absl_status_macros PRIVATE -DNDEBUG)
-set_target_properties(absl_status_macros PROPERTIES PUBLIC_HEADER ${PUBLIC_HEADERS_STATUS_MACROS})
 
 # The user would have to provide the full install path.
 if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
