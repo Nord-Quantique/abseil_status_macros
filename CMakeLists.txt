@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.23)
-project(abseil_status_macros VERSION 1.7 LANGUAGES CXX)
+project(abseil_status_macros VERSION 1.8 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -26,7 +26,7 @@ if (NOT TARGET absl::status)
     FetchContent_MakeAvailable(absl)
     set(CMAKE_INCLUDE_CURRENT_DIR ON)
     set(absl_VERSION 20230802)  # ensure to keep this in check with the used `GIT_TAG`.
-endif()
+endif ()
 
 # Create library
 set(SOURCES_ABSL_STATUS_MACROS
@@ -56,6 +56,7 @@ if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
     set(CMAKE_INSTALL_PREFIX "" CACHE PATH "..." FORCE)
 endif ()
 install(TARGETS absl_status_macros
+        EXPORT absl_status_macros_targets
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
         FILE_SET HEADERS
 )
